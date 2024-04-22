@@ -200,10 +200,6 @@ h6 {
   grid-column: content;
 }
 
-* {
-  color: #f5f5f5;
-}
-
 .title {
   height: 45vh;
   position: relative;
@@ -227,40 +223,41 @@ body {
   left: calc(0 * (17vh + 300px + (70vh - 1500px) / 4));
   transform: rotate(-30deg);
   top: 20%;
-  z-index: 7;
+  z-index: -3;
 }
 .beer:nth-child(2) {
   left: calc(1 * (17vh + 300px + (70vh - 1500px) / 4));
   transform: rotate(-15deg);
   top: 10%;
-  z-index: 8;
+  z-index: -2;
 }
 .beer:nth-child(3) {
   left: calc(2 * (17vh + 300px + (70vh - 1500px) / 4));
   transform: rotate(0deg);
   top: 0%;
-  z-index: 9;
+  z-index: -1;
 }
 .beer:nth-child(4) {
   left: calc(3 * (17vh + 300px + (70vh - 1500px) / 4));
   transform: rotate(15deg);
   top: 10%;
-  z-index: 8;
+  z-index: -2;
 }
 .beer:nth-child(5) {
   left: calc(4 * (17vh + 300px + (70vh - 1500px) / 4));
   transform: rotate(30deg);
   top: 20%;
-  z-index: 7;
+  z-index: -3;
 }
 
 #main-content-grid {
-  height: 130vh;
+  padding-top: 10rem;
   background-color: #f3ae2d;
+  height: 130vh;
   position: relative;
-  overflow-y: hidden;
-  -webkit-mask-image: url("../images/piana2.svg");
-          mask-image: url("../images/piana2.svg");
+  overflow: hidden;
+  -webkit-mask-image: url("../images/piana3.svg");
+          mask-image: url("../images/piana3.svg");
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
   -webkit-mask-size: cover;
@@ -297,20 +294,195 @@ body {
      -moz-user-select: none;
           user-select: none;
   top: 100%;
-  z-index: 20;
   animation: bubbling_up 3.5s linear infinite, bubbling_sidetoside 1s ease-in-out infinite;
 }
 
-#pianaWrapper {
+.etykieta {
+  height: min(100%, 480px);
+  z-index: 2;
+  box-shadow: 0 0 7px 7px rgba(0, 0, 0, 0.2509803922);
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.etykietaWrapper {
+  height: min(100%, 480px);
+  padding: 40px;
+  padding-inline: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.labelPhoto {
+  max-height: 100%;
+  border: 2px dashed #0e1111;
+  justify-self: center;
+}
+
+.ingredients {
+  padding-top: 16px;
+  height: 100%;
+  border: solid 5px #0e1111;
+  background-color: #f5f5f5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 5fr 4fr 4fr 4fr;
+  grid-template-areas: "ocenka info" "table barcode" "table barcode" "table barcode";
+}
+.ingredients p {
+  color: #0e1111;
+}
+
+.labelOcenka {
+  grid-area: ocenka;
+  margin-inline: 32px;
+}
+
+.labelTable {
+  grid-area: table;
+  margin: auto 0;
+  padding-left: 32px;
+}
+.labelTable p {
+  font-size: 12px;
+  text-align: justify;
+}
+.labelTable table {
+  table-layout: fixed;
+  font-size: 130%;
+}
+.labelTable table, .labelTable tr, .labelTable th, .labelTable td {
+  padding: 6px;
+  border: #0e1111 solid 1px;
+  border-collapse: collapse;
+}
+.labelTable th, .labelTable td {
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.labelInfo {
+  grid-area: info;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.labelInfo .nazwaBrowara {
+  margin-right: 2px;
+}
+.labelInfo p {
+  padding: 2px;
+  font-size: 110%;
+}
+.labelInfo .pojemnosc {
+  align-self: flex-end;
+  font-size: 130%;
+  text-align: right;
+  padding-right: 20px;
+  width: 100%;
+}
+.labelInfo .pojemnosc p {
+  width: 100%;
+}
+
+.labelInfo > div {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+.labelInfo > div > div {
+  width: 50%;
+}
+
+.labelBarcode {
+  grid-area: barcode;
+  display: flex;
+  justify-content: right;
+}
+.labelBarcode img {
+  max-height: 90%;
+  max-width: 50%;
+}
+
+#dodaj-content-grid {
+  padding-top: 3rem;
+  background-color: #f3ae2d;
   position: relative;
   overflow: hidden;
-  height: 350px;
 }
-#pianaWrapper img {
-  position: absolute;
-  overflow: hidden;
-  top: -250px;
-  left: 0;
-  width: 100%;
-  z-index: 15;
+#dodaj-content-grid h1 {
+  text-align: center;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 600;
+}
+
+#formWrapper {
+  display: grid;
+  padding: 40px;
+  gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 480px;
+  justify-items: center;
+  align-items: center;
+}
+#formWrapper label {
+  font-size: 20px;
+}
+#formWrapper input, #formWrapper textarea {
+  margin-top: 6px;
+  max-width: 250px;
+  height: 30px;
+  border: 2px solid #0e1111;
+  padding: 4px;
+  font-size: 18px;
+  outline: none;
+  background-color: #f5f5f5;
+}
+#formWrapper input[type=file] {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+#formWrapper textarea {
+  resize: none;
+  height: 6em;
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.ocenkaDiv > div {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ocenkaDiv > div > div {
+  text-align: center;
+}
+
+@keyframes buttonSplash {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+#saveButton {
+  background-color: red;
+  color: #0e1111;
+  font-size: 40px;
+  font-weight: 600;
+  border-radius: 50px;
+  border: #0e1111 2px dashed;
+  width: 80%;
+  height: 80%;
+  grid-column: 2/4;
+  animation: buttonSplash 1s infinite;
 }/*# sourceMappingURL=style.css.map */
